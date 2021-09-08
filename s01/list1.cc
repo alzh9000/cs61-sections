@@ -26,8 +26,8 @@ int main() {
     l.pop_back();     // remove last element (but do not return it)
     assert(l.size() == 5);
 
-    l.empty();        // return true iff `size() == 0`
-    assert(!l.empty());
+    bool e = l.empty(); // return true iff `size() == 0`
+    assert(!e);
 
     // Print list contents
     printf("l: [");

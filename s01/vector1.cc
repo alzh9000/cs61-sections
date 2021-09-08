@@ -26,8 +26,8 @@ int main() {
     a.pop_back();     // remove last element (but do not return it)
     assert(a.size() == 4);
 
-    a.empty();        // return true iff `size() == 0`
-    assert(!a.empty());
+    bool e = a.empty(); // return true iff `size() == 0`
+    assert(!e);
 
     // Print vector contents
     printf("a: [");
