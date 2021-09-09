@@ -3,7 +3,7 @@ DSPROGRAMS = $(patsubst %.cc,%,$(wildcard vector[0-9].cc list[0-9].cc map[0-9].c
 PROGRAMS = $(DSPROGRAMS)
 all: $(PROGRAMS)
 
-ALLPROGRAMS = $(PROGRAMS) inv testinsert0 greet
+ALLPROGRAMS = $(PROGRAMS) inv testinsert0 greet vectorq listq mapq setq uomapq uosetq
 
 include ../common/rules.mk
 
