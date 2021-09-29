@@ -28,14 +28,14 @@ Disadvantages of Docker:
 
 1.  Download and install [Docker][].
 
-2.  Clone the [cs61-lectures repository][cs61-lectures] onto your computer.
+2.  Clone the [cs61-sections repository][cs61-sections] onto your computer.
 
-3.  Change into the `cs61-lectures/docker` directory.
+3.  Change into the `cs61-sections/docker` directory.
 
 4.  Run this command. It will take a while—up to ten minutes.
 
     ```shellsession
-    $ docker build -t cs61:latest -f Dockerfile --platform linux/amd64 .
+    $ ./cs61-build-docker
     ```
 
     The command starts up a virtual Linux-based computer running inside your
@@ -45,10 +45,13 @@ Disadvantages of Docker:
     take just a second or so for Docker to restart it.
 
 We may need to change the Docker image during the term. If we do, you’ll
-update your repository to get the latest Dockerfile, then re-run the `docker
-build` command from Step 4. However, later runs should be faster since they’ll
-take advantage of your previous work.
+update your repository to get the latest Dockerfile, then re-run the
+`./cs61-build-docker` command from Step 4. However, later runs should be
+faster since they’ll take advantage of your previous work.
 
+> `./cs61-build-docker` is a wrapper around `docker build`, specifically
+> `docker build -t cs61:latest -f Dockerfile --platform linux/amd64 .`
+{.note}
 
 ## Running CS 61 Docker by script
 
@@ -116,13 +119,13 @@ Explanation:
 Here’s an example session:
 
 ```shellsession
-$ docker run -it --platform linux/amd64 --rm -v ~/cs61-lectures:/home/cs61-user/cs61-lectures cs61:latest
+$ docker run -it --platform linux/amd64 --rm -v ~/cs61-psets:/home/cs61-user/cs61-psets cs61:latest
 cs61-user@a15e6c4c8dbe:~$ ls
-cs61-lectures
+cs61-psets
 cs61-user@a15e6c4c8dbe:~$ echo "Hello, world"
 Hello, world
 cs61-user@a15e6c4c8dbe:~$ cs61-docker-version
-7
+11
 cs61-user@a15e6c4c8dbe:~$ exit
 exit
 $ 
@@ -133,3 +136,4 @@ $
 [VMware Fusion]: https://www.vmware.com/products/fusion.html
 [VirtualBox]: https://www.virtualbox.org/
 [cs61-lectures]: https://github.com/cs61/cs61-lectures/
+[cs61-sections]: https://github.com/cs61/cs61-sections/
