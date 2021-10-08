@@ -41,15 +41,16 @@ Disadvantages of Docker:
     The command starts up a virtual Linux-based computer running inside your
     computer. It then installs a bunch of software useful for CS 61 on that
     environment, then takes a snapshot of the running environment. (The
-    snapshot has a name: `cs61:latest`.) Once the snapshot is created, it’ll
-    take just a second or so for Docker to restart it.
+    snapshot has a name, such as `cs61:latest` or `cs61:arm64`.) Once the
+    snapshot is created, it’ll take just a second or so for Docker to restart
+    it.
 
 We may need to change the Docker image during the term. If we do, you’ll
 update your repository to get the latest Dockerfile, then re-run the
 `./cs61-build-docker` command from Step 4. However, later runs should be
 faster since they’ll take advantage of your previous work.
 
-> `./cs61-build-docker` is a wrapper around `docker build`, specifically
+> `./cs61-build-docker` is a wrapper around `docker build`. On x86-64 hosts, it runs
 > `docker build -t cs61:latest -f Dockerfile --platform linux/amd64 .`
 {.note}
 
@@ -90,7 +91,7 @@ connected to the VM. (The `a47f05ea5085` part is a unique identifier for this
 running VM.) You can execute any Linux commands you want. To escape from the
 VM, type Control-D or run the `exit` command.
 
-The script assumes your Docker container is named `cs61:latest`, as it was above.
+The script assumes your Docker container is named `cs61:latest`.
 
 
 ### Running CS 61 Docker by hand
@@ -125,7 +126,7 @@ cs61-psets
 cs61-user@a15e6c4c8dbe:~$ echo "Hello, world"
 Hello, world
 cs61-user@a15e6c4c8dbe:~$ cs61-docker-version
-11
+12
 cs61-user@a15e6c4c8dbe:~$ exit
 exit
 $ 
