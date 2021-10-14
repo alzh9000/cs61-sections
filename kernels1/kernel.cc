@@ -59,7 +59,7 @@ void kernel_start(const char* command) {
     console_clear();
 
     // (re-)initialize kernel page table
-    for (vmiter it(kernel_pagetable);
+    for (vmiter it(kernel_pagetable, 0);
          it.va() < MEMSIZE_PHYSICAL;
          it += PAGESIZE) {
         if (it.va() == CONSOLE_ADDR) {

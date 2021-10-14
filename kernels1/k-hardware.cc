@@ -127,7 +127,7 @@ void init_kernel_memory() {
 
     // user-accessible mappings for physical memory,
     // except that (for debuggability) nullptr is totally inaccessible
-    for (vmiter it(kernel_pagetable);
+    for (vmiter it(kernel_pagetable, 0);
          it.va() < MEMSIZE_PHYSICAL;
          it += PAGESIZE) {
         if (it.va() != 0) {

@@ -12,8 +12,8 @@
 class vmiter {
   public:
     // Initialize a `vmiter` for `pt`, with initial virtual address `va`.
-    inline vmiter(x86_64_pagetable* pt, uintptr_t va = 0);
-    inline vmiter(const proc* p, uintptr_t va = 0);
+    inline vmiter(x86_64_pagetable* pt, uintptr_t va);
+    inline vmiter(const proc* p, uintptr_t va);
 
     // Return current virtual address
     inline uintptr_t va() const;

@@ -94,7 +94,7 @@ void memusage::refresh() {
             }
             mark(kptr2pa(p->pagetable), f_kernel | f_process(pid));
 
-            for (vmiter it(p); it.va() < VA_LOWEND; ) {
+            for (vmiter it(p, 0); it.va() < VA_LOWEND; ) {
                 if (it.user()) {
                     mark(it.pa(), f_user | f_process(pid));
                     it.next();
@@ -107,7 +107,7 @@ void memusage::refresh() {
 
     // if no different process page tables, use physical address instead
     if (!any) {
-        for (vmiter it(kernel_pagetable); it.va() < VA_LOWEND; ) {
+        for (vmiter it(kernel_pagetable, 0); it.va() < VA_LOWEND; ) {
             if (it.user()
                 && it.pa() < MEMSIZE_PHYSICAL
                 && physpages[it.pa() / PAGESIZE].used()) {
@@ -206,7 +206,7 @@ static void console_memviewer_virtual(memusage& mu, proc* vmp) {
                    "VIRTUAL ADDRESS SPACE FOR %d%C%s\n", vmp->pid,
                    0x0700, statemsg);
 
-    for (vmiter it(vmp);
+    for (vmiter it(vmp, 0);
          it.va() < memusage::max_view_va;
          it += PAGESIZE) {
         unsigned long pn = it.va() / PAGESIZE;
