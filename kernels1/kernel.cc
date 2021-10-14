@@ -80,12 +80,6 @@ void kernel_start(const char* command) {
     if (!command) {
         command = WEENSYOS_FIRST_PROCESS;
     }
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) syscall_entry).pa());
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) kernel_pagetable).pa());
-    log_printf("%p\n", vmiter(kernel_pagetable, program_image("hello").entry()).pa(), vmiter(kernel_pagetable, program_image("hello").entry()).perm());
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) syscall_entry).perm());
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) kernel_pagetable).perm());
-    log_printf("%p %p\n", vmiter(kernel_pagetable, program_image("hello").entry()).pa(), vmiter(kernel_pagetable, program_image("hello").entry()).perm());
     if (!program_image(command).empty()) {
         process_setup(1, command);
     } else if (strcmp(command, "pipe") == 0) {
@@ -95,9 +89,6 @@ void kernel_start(const char* command) {
         process_setup(1, "alice");
         process_setup(2, "eve");
     }
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) syscall_entry).perm());
-    log_printf("%p\n", vmiter(kernel_pagetable, (uintptr_t) kernel_pagetable).perm());
-    log_printf("%p\n", vmiter(kernel_pagetable, program_image("hello").entry()).perm());
     run(&ptable[1]);
 }
 
